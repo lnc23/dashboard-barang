@@ -81,15 +81,15 @@ export const SideBar = () => {
   }
 
   return (
-    <div className="fixed flex-row ">
+    <div className="flex flex-row bg-red-700 z-10">
       <div
-        className={`fixed  ${
+        className={`flex  ${
           isSideOpen ? "w-72" : "w-0"
         } h-screen bg-[#27374D] shadow-2xl`}
       >
         <nav
           hidden={isSideOpen ? false : true}
-          className="xl:mt-0 sm:mt-10 mt-10"
+          className="xl:mt-0 sm:mt-10 w-full mt-10"
         >
           {menu.map((menu, index) => (
             <ul key={index}>
@@ -129,7 +129,7 @@ export const SideBar = () => {
         </nav>
       </div>
       <div
-        className={`p-2 rounded-lg  absolute ${
+        className={`p-2 rounded-lg absolute ${
           isSideOpen ? "xl:left-72 sm:left-0 left-0" : "left-0"
         }`}
       >
