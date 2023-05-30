@@ -2,25 +2,67 @@
 import { useState } from "react"
 import { IconBase } from "react-icons"
 import { BsGraphUp, BsChevronDown, BsChevronUp } from "react-icons/bs"
+import {
+  MdOutlineDataset,
+  MdOutlineDriveFileRenameOutline,
+  MdOutlineProductionQuantityLimits,
+} from "react-icons/md"
+import { HiTemplate } from "react-icons/hi"
+import { TbReport } from "react-icons/tb"
+import { AiOutlineUsergroupAdd } from "react-icons/ai"
+import { GiHamburgerMenu } from "react-icons/gi"
 
 export const SideBar = () => {
   const [isDown, setIsDown] = useState<boolean>(false)
+  const [isSideOpen, setIsSideOpen] = useState<boolean>(true)
 
   const menu = [
     {
-      id: 1,
       name: "Dashboard",
       path: "/",
       child: [],
+      icon: <BsGraphUp />,
     },
     {
-      id: 2,
       name: "Master Data",
       path: "/",
       child: [
-        { name: "Barang", path: "/" },
-        { name: "Stok Barang", path: "/" },
+        {
+          name: "Barang",
+          path: "/",
+          icon: <MdOutlineDriveFileRenameOutline />,
+        },
+        {
+          name: "Stok Barang",
+          path: "/",
+          icon: <MdOutlineProductionQuantityLimits />,
+        },
       ],
+      icon: <MdOutlineDataset />,
+    },
+    {
+      name: "Barang Masuk",
+      path: "/",
+      child: [],
+      icon: <HiTemplate />,
+    },
+    {
+      name: "Barang Keluar",
+      path: "/",
+      child: [],
+      icon: <HiTemplate />,
+    },
+    {
+      name: "Report Penjualan",
+      path: "/",
+      child: [],
+      icon: <TbReport />,
+    },
+    {
+      name: "Daftar User",
+      path: "/",
+      child: [],
+      icon: <AiOutlineUsergroupAdd />,
     },
   ]
 
@@ -39,44 +81,65 @@ export const SideBar = () => {
   }
 
   return (
-    <div className="absolute flex flex-col w-72 max-h-screen min-h-screen bg-[#27374D] shadow-2xl">
-      <nav className="w-full h-full">
-        {menu.map((menu, index) => (
-          <ul key={index}>
-            <li className="relative hover:bg-[#526D82] hover:w-full hover:py-5 py-5  hover:rounded-sm">
-              <button
-                className="ml-5 text-white flex flex-row items-center gap-5"
-                onClick={() => handleSideBar(index)}
-              >
-                <BsGraphUp />
-                <text className="flex font-medium text-lg">{menu.name}</text>
-                {menu.child.length > 0 ? handleChevronIcon() : null}
-              </button>
-            </li>
-            {menu.child.length > 0
-              ? menu.child.map((child, index) =>
-                  isDown ? (
-                    <ul key={index}>
-                      {
-                        <li className="relative hover:bg-[#526D82] hover:py-3 py-3 hover:w-full hover:rounded-sm">
-                          <button
-                            className="ml-14 text-white flex flex-row items-center gap-5"
-                            onClick={() => console.log(child.path)}
-                          >
-                            <BsGraphUp />
-                            <text className="font-medium text-lg">
-                              {child.name}
-                            </text>
-                          </button>
-                        </li>
-                      }
-                    </ul>
-                  ) : null
-                )
-              : null}
-          </ul>
-        ))}
-      </nav>
+    <div className="fixed flex-row ">
+      <div
+        className={`fixed  ${
+          isSideOpen ? "w-72" : "w-0"
+        } h-screen bg-[#27374D] shadow-2xl`}
+      >
+        <nav
+          hidden={isSideOpen ? false : true}
+          className="xl:mt-0 sm:mt-10 mt-10"
+        >
+          {menu.map((menu, index) => (
+            <ul key={index}>
+              <li className="relative hover:bg-[#526D82] hover:w-full hover:py-5 py-5  hover:rounded-sm">
+                <button
+                  className="ml-5 text-white flex flex-row items-center gap-5"
+                  onClick={() => handleSideBar(index)}
+                >
+                  {menu.icon}
+                  <text className="flex font-medium text-lg">{menu.name}</text>
+                  {menu.child.length > 0 ? handleChevronIcon() : null}
+                </button>
+              </li>
+              {menu.child.length > 0
+                ? menu.child.map((child, index) =>
+                    isDown ? (
+                      <ul key={index}>
+                        {
+                          <li className="relative hover:bg-[#526D82] hover:py-3 py-3 hover:w-full hover:rounded-sm">
+                            <button
+                              className="ml-14 text-white flex flex-row items-center gap-5"
+                              onClick={() => console.log(child.path)}
+                            >
+                              {child.icon}
+                              <text className="font-medium text-lg">
+                                {child.name}
+                              </text>
+                            </button>
+                          </li>
+                        }
+                      </ul>
+                    ) : null
+                  )
+                : null}
+            </ul>
+          ))}
+        </nav>
+      </div>
+      <div
+        className={`p-2 rounded-lg  absolute ${
+          isSideOpen ? "xl:left-72 sm:left-0 left-0" : "left-0"
+        }`}
+      >
+        <button
+          className={`bg-[#27374D] p-2 rounded-md `}
+          onClick={() => setIsSideOpen(!isSideOpen)}
+        >
+          <GiHamburgerMenu />
+        </button>
+      </div>
     </div>
   )
 }
