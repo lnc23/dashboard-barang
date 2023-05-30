@@ -99,7 +99,7 @@ export const SideBar = () => {
                   onClick={() => handleSideBar(index)}
                 >
                   {menu.icon}
-                  <text className="flex font-medium text-lg">{menu.name}</text>
+                  <span className="flex font-medium text-lg">{menu.name}</span>
                   {menu.child.length > 0 ? handleChevronIcon() : null}
                 </button>
               </li>
