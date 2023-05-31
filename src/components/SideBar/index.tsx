@@ -11,10 +11,11 @@ import { HiTemplate } from "react-icons/hi"
 import { TbReport } from "react-icons/tb"
 import { AiOutlineUsergroupAdd } from "react-icons/ai"
 import { GiHamburgerMenu } from "react-icons/gi"
+import Link from "next/link"
 
 export const SideBar = () => {
-  const [isDown, setIsDown] = useState<boolean>(false)
   const [isSideOpen, setIsSideOpen] = useState<boolean>(true)
+  const [isDown, setIsDown] = useState<any>([])
 
   const menu = [
     {
@@ -42,7 +43,7 @@ export const SideBar = () => {
     },
     {
       name: "Barang Masuk",
-      path: "/",
+      path: "/barangmasuk",
       child: [],
       icon: <HiTemplate />,
     },
@@ -64,21 +65,45 @@ export const SideBar = () => {
       child: [],
       icon: <AiOutlineUsergroupAdd />,
     },
+    {
+      name: "Master Data",
+      path: "/",
+      child: [
+        {
+          name: "Barang",
+          path: "/",
+          icon: <MdOutlineDriveFileRenameOutline />,
+        },
+        {
+          name: "Stok Barang",
+          path: "/",
+          icon: <MdOutlineProductionQuantityLimits />,
+        },
+      ],
+      icon: <MdOutlineDataset />,
+    },
   ]
+  const tempArrIsDown = (index: any) => {
+    const tempArr = [...isDown]
+    tempArr[index] = !isDown[index] ?? true
+    setIsDown(tempArr)
+  }
 
-  const handleSideBar = (index: number) => {
+  const handleSideBar = (index: any) => {
     if (menu[index].child.length > 0) {
-      setIsDown(!isDown)
+      tempArrIsDown(index)
     }
   }
 
-  const handleChevronIcon = () => {
-    if (isDown) {
+  const handleChevronIcon = (index: any) => {
+    if (isDown[index]) {
       return <BsChevronDown className="absolute right-5" />
     } else {
       return <BsChevronUp className="absolute right-5" />
     }
   }
+
+  console.log(isDown)
 
   return (
     <div className="flex flex-row bg-red-700 z-10">
@@ -94,19 +119,34 @@ export const SideBar = () => {
           {menu.map((menu, index) => (
             <ul key={index}>
               <li className="relative hover:bg-[#526D82] hover:w-full hover:py-5 py-5  hover:rounded-sm">
-                <button
-                  className="ml-5 text-white flex flex-row items-center gap-5"
-                  onClick={() => handleSideBar(index)}
-                >
-                  {menu.icon}
-                  <span className="flex font-medium text-lg">{menu.name}</span>
-                  {menu.child.length > 0 ? handleChevronIcon() : null}
-                </button>
+                {menu.child.length > 0 ? (
+                  <button
+                    className="ml-5 text-white flex flex-row items-center gap-5"
+                    onClick={() => handleSideBar(index)}
+                  >
+                    {menu.icon}
+                    <span className="flex font-medium text-lg">
+                      {menu.name}
+                    </span>
+                    {menu.child.length > 0 ? handleChevronIcon(index) : null}
+                  </button>
+                ) : (
+                  <Link
+                    className="ml-5 text-white flex flex-row items-center gap-5"
+                    href={menu.path}
+                  >
+                    {menu.icon}
+                    <span className="flex font-medium text-lg">
+                      {menu.name}
+                    </span>
+                    {menu.child.length > 0 ? handleChevronIcon(index) : null}
+                  </Link>
+                )}
               </li>
               {menu.child.length > 0
-                ? menu.child.map((child, index) =>
-                    isDown ? (
-                      <ul key={index}>
+                ? menu.child.map((child, indexchild) =>
+                    isDown[index] ? (
+                      <ul key={indexchild}>
                         {
                           <li className="relative hover:bg-[#526D82] hover:py-3 py-3 hover:w-full hover:rounded-sm">
                             <button
