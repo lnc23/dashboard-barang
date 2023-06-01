@@ -14,7 +14,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="flex relative justify-end items-center py-2 mr-10">
+    <div className="flex justify-end items-center py-2 mr-10 sticky top-0">
       <button
         className="py-2 flex flex-row items-center space-x-3 px-3 rounded-md hover:bg-[#2f4057] bg-[#27374D]"
         onClick={() => setIsDrop(!isDrop)}

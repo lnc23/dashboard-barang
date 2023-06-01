@@ -1,7 +1,7 @@
 "use client"
-import { useState } from "react"
+import { ReactNode, useState } from "react"
 import { IconBase } from "react-icons"
-import { BsGraphUp, BsChevronDown, BsChevronUp } from "react-icons/bs"
+import { BsChevronDown, BsChevronUp, BsGraphUp } from "react-icons/bs"
 import {
   MdOutlineDataset,
   MdOutlineDriveFileRenameOutline,
@@ -13,7 +13,11 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai"
 import { GiHamburgerMenu } from "react-icons/gi"
 import Link from "next/link"
 
-export const SideBar = () => {
+type Props = {
+  children: ReactNode
+}
+
+export const SideBar = ({ children }: Props) => {
   const [isSideOpen, setIsSideOpen] = useState<boolean>(true)
   const [isDown, setIsDown] = useState<any>([])
 
@@ -96,29 +100,41 @@ export const SideBar = () => {
   }
 
   const handleChevronIcon = (index: any) => {
-    if (isDown[index]) {
-      return <BsChevronDown className="absolute right-5" />
-    } else {
-      return <BsChevronUp className="absolute right-5" />
-    }
+    return (
+      <BsChevronDown
+        className={`absolute right-5 duration-100 ${
+          isDown[index] ? "-rotate-180" : ""
+        }`}
+      />
+    )
   }
 
-  console.log(isDown)
-
   return (
-    <div className="flex flex-row bg-red-700 z-10">
+    <div className="flex">
       <div
-        className={`flex  ${
-          isSideOpen ? "w-72" : "w-0"
-        } h-screen bg-[#27374D] shadow-2xl`}
+        className={` ${
+          isSideOpen
+            ? "w-72 min-w-[18rem] duration-500"
+            : "w-0 min-w-[0rem] duration-500"
+        } h-screen bg-[#27374D] z-20 shadow-2xl top-0 left-0 sticky`}
       >
+        <button
+          className={`bg-[#27374D] p-2 rounded-md absolute -right-10 top-2 `}
+          onClick={() => setIsSideOpen(!isSideOpen)}
+        >
+          <GiHamburgerMenu />
+        </button>
         <nav
-          hidden={isSideOpen ? false : true}
-          className="xl:mt-0 sm:mt-10 w-full mt-10"
+          // hidden={isSideOpen ? false : true}
+          className={`xl:mt-0 sm:mt-10 mt-10 transition-opacity  ${
+            isSideOpen
+              ? "block opacity-100 duration-1000"
+              : "block opacity-0 duration-100"
+          }`}
         >
           {menu.map((menu, index) => (
             <ul key={index}>
-              <li className="relative hover:bg-[#526D82] hover:w-full hover:py-5 py-5  hover:rounded-sm">
+              <li className="relative hover:bg-[#526D82] hover:w-full hover:py-5 py-5 hover:rounded-sm">
                 {menu.child.length > 0 ? (
                   <button
                     className="ml-5 text-white flex flex-row items-center gap-5"
@@ -168,18 +184,7 @@ export const SideBar = () => {
           ))}
         </nav>
       </div>
-      <div
-        className={`p-2 rounded-lg absolute ${
-          isSideOpen ? "xl:left-72 sm:left-0 left-0" : "left-0"
-        }`}
-      >
-        <button
-          className={`bg-[#27374D] p-2 rounded-md `}
-          onClick={() => setIsSideOpen(!isSideOpen)}
-        >
-          <GiHamburgerMenu />
-        </button>
-      </div>
+      {children}
     </div>
   )
 }

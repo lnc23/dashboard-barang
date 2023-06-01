@@ -8,14 +8,13 @@ type Props = {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <div className="flex relative flex-row">
-      <SideBar />
-      <div className="flex flex-col">
-        <div className="absolute right-0">
+    <view className="max-w-[1920px] w-fit flex flex-wrap">
+      <SideBar>
+        <div className="top-0 right-0 fixed z-10 bg-[#9DB2BF] w-full">
           <Navbar />
         </div>
-        <div className="mt-16 mx-10">{children}</div>
-      </div>
-    </div>
+        <div className="w-full   overflow-y-auto">{children}</div>
+      </SideBar>
+    </view>
   )
 }
