@@ -6,11 +6,11 @@ export const Navbar = () => {
   const [isDrop, setIsDrop] = useState<boolean>(false)
 
   const handleDrop = () => {
-    if (isDrop) {
-      return <BiChevronDown />
-    } else {
-      return <BiChevronUp />
-    }
+    return (
+      <BiChevronDown
+        className={`${!isDrop ? "rotate-180" : ""} duration-300`}
+      />
+    )
   }
 
   return (
@@ -22,15 +22,17 @@ export const Navbar = () => {
         <span>YansonFer</span>
         {handleDrop()}
       </button>
-      {isDrop ? (
-        <div className="absolute top-[55px] rounded-md bg-[#27374D]">
-          <ul>
-            <li className="py-3 px-5">My Profile</li>
-            <li className="border-b-[1px] border-[#DDE6ED]"></li>
-            <li className="py-3 px-5">LogOut</li>
-          </ul>
-        </div>
-      ) : null}
+      <div
+        className={`absolute top-[55px] rounded-md duration-300 bg-[#27374D] ${
+          isDrop ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <ul>
+          <li className="py-3 px-5">My Profile</li>
+          <li className="border-b-[1px] border-[#DDE6ED]"></li>
+          <li className="py-3 px-5">LogOut</li>
+        </ul>
+      </div>
     </div>
   )
 }

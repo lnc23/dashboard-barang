@@ -134,7 +134,7 @@ export const SideBar = ({ children }: Props) => {
         >
           {menu.map((menu, index) => (
             <ul key={index}>
-              <li className="relative hover:bg-[#526D82] hover:w-full hover:py-5 py-5 hover:rounded-sm">
+              <li className="relative hover:bg-[#526D82] hover:duration-500 hover:w-full hover:py-5 py-5 hover:rounded-sm">
                 {menu.child.length > 0 ? (
                   <button
                     className="ml-5 text-white flex flex-row items-center gap-5"
@@ -164,7 +164,7 @@ export const SideBar = ({ children }: Props) => {
                     isDown[index] ? (
                       <ul key={indexchild}>
                         {
-                          <li className="relative hover:bg-[#526D82] hover:py-3 py-3 hover:w-full hover:rounded-sm">
+                          <li className="relative hover:bg-[#526D82] hover:duration-500 hover:py-3 py-3 hover:w-full hover:rounded-sm">
                             <button
                               className="ml-14 text-white flex flex-row items-center gap-5"
                               onClick={() => console.log(child.path)}
