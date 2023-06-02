@@ -7,7 +7,7 @@ type Props = {
 
 export const Section = ({ marginTop, children}: Props) => {
   return (
-    <div className={`px-10`}>
+    <div className={`xl:px-10 lg:px-10 md:px-10 sm:px-1 px-1`}>
       <div
         className={`bg-[#DDE6ED] w-full min-w-fit flex rounded-lg p-5 mt-${marginTop}`}
       >
