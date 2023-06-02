@@ -72,10 +72,10 @@ export default function Home() {
           {/* start section card` */}
           <CardDashboard />
           {/* end section card */}
-          <Section marginTop="5" padingX="10">
+          <Section marginTop="5">
             <div className="xl:flex xl:flex-col lg:flex lg:flex-col md:grid md:grid-cols-1 sm:flex sm:flex-col flex flex-col h-full xl:justify-center lg:justify-center justify-start xl:items-center lg:items-center items-start flex-grow min-w-fit">
               <span className="text-[#27374D] font-bold text-lg self-start">
-                Sales
+                Sales Chart
               </span>
               <ResponsiveContainer width="95%" height={500}>
                 <LineChart
