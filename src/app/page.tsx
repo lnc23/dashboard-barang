@@ -1,5 +1,5 @@
 "use client"
-import React, { PureComponent, useRef } from "react"
+import React, { PureComponent, useEffect, useRef, useState } from "react"
 import { CardDashboard, Layout, Section } from "@/components"
 import { BsGraphUp, BsArrowDown } from "react-icons/bs"
 import {
@@ -8,12 +8,9 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  ResponsiveContainer,
   Legend,
   Tooltip,
-  Cell,
-  Pie,
-  PieChart,
+  ResponsiveContainer,
 } from "recharts"
 import { CiMenuKebab } from "react-icons/ci"
 
@@ -63,42 +60,6 @@ export default function Home() {
     },
   ]
 
-  const dataPie = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-  ]
-
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
-
-  const RADIAN = Math.PI / 180
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }: any) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5
-    const x = cx + radius * Math.cos(-midAngle * RADIAN)
-    const y = cy + radius * Math.sin(-midAngle * RADIAN)
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    )
-  }
-
   return (
     <div className="flex flex-col overflow-auto h-screen max-w-screen max-h-screen">
       <Layout>
@@ -111,39 +72,35 @@ export default function Home() {
           {/* start section card` */}
           <CardDashboard />
           {/* end section card */}
-          <Section marginTop="10" padingX="10">
-            <div className="flex flex-col h-full justify-center items-center flex-grow">
+          <Section marginTop="5" padingX="10">
+            <div className="xl:flex xl:flex-col lg:flex lg:flex-col md:grid md:grid-cols-1 sm:flex sm:flex-col flex flex-col h-full xl:justify-center lg:justify-center justify-start xl:items-center lg:items-center items-start flex-grow min-w-fit">
               <span className="text-[#27374D] font-bold text-lg self-start">
                 Sales
               </span>
-              <div className="flex w-fit mt-10 h-[100%] justify-center items-center">
-                <ResponsiveContainer width={1350} height={500}>
-                  <LineChart
-                    width={1000}
-                    height={1000}
-                    data={data}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="pv"
-                      stroke="#8884d8"
-                      activeDot={{ r: 8 }}
-                    />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
+              <ResponsiveContainer width="95%" height={500}>
+                <LineChart
+                  data={data}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="pv"
+                    stroke="#8884d8"
+                    activeDot={{ r: 8 }}
+                  />
+                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
           </Section>
         </div>

@@ -129,9 +129,9 @@ export const CardDashboard = () => {
   ]
 
   return (
-    <div className="flex flex-row justify-center flex-grow mt-5 px-10 gap-10">
+    <div className="xl:flex xl:flex-row lg:grid lg:grid-cols-2 md:grid md:grid-cols-1 sm:grid sm:grid-cols-1 grid grid-cols-1 justify-center xl:flex-grow mt-5 xl:px-10 px-1 gap-10">
       {/* start card 1 */}
-      <div className="flex-col flex bg-blue-900 w-[25%] h-fit shadow-2xl rounded-lg p-5 relative">
+      <div className="flex-col flex bg-blue-900 w-full h-fit shadow-2xl rounded-lg p-5 relative min-w-fit">
         <div className="absolute right-3">
           <button className="p-2 rounded-full hover:bg-blue-950 hover:opacity-100 hover:duration-500">
             <CiMenuKebab size={30} />
@@ -159,7 +159,7 @@ export const CardDashboard = () => {
       </div>
       {/* end card 1 */}
       {/* start card 2 */}
-      <div className="flex-col flex bg-green-900 w-[25%] h-fit shadow-2xl rounded-lg p-5 relative">
+      <div className="flex-col flex bg-green-900 w-full h-fit shadow-2xl rounded-lg p-5 relative min-w-fit">
         <div className="absolute right-3">
           <button className="p-2 rounded-full hover:bg-green-950 hover:opacity-100 hover:duration-500">
             <CiMenuKebab size={30} />
@@ -187,7 +187,7 @@ export const CardDashboard = () => {
       </div>
       {/* end card 2 */}
       {/* start card 3 */}
-      <div className="flex-col flex bg-red-900 h-fit w-[25%] shadow-2xl rounded-lg p-5 relative">
+      <div className="flex-col flex bg-red-900 h-fit w-full shadow-2xl rounded-lg p-5 relative min-w-fit">
         <div className="absolute right-3">
           <button className="p-2 rounded-full hover:bg-red-950 hover:opacity-100 hover:duration-500">
             <CiMenuKebab size={30} />
@@ -215,7 +215,7 @@ export const CardDashboard = () => {
       </div>
       {/* end card 3 */}
       {/* start card 3 */}
-      <div className="flex-col flex bg-yellow-900 h-fit w-[25%] shadow-2xl rounded-lg p-5 relative">
+      <div className="flex-col flex bg-yellow-900 h-fit w-full shadow-2xl rounded-lg p-5 relative min-w-fit">
         <div className="absolute right-3">
           <button className="p-2 rounded-full hover:bg-yellow-950 hover:opacity-100 hover:duration-500">
             <CiMenuKebab size={30} />
