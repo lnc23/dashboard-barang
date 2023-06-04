@@ -1,17 +1,10 @@
 "use client"
 import { ReactNode, useEffect, useState } from "react"
-import { IconBase } from "react-icons"
-import { BsChevronDown, BsChevronUp, BsGraphUp } from "react-icons/bs"
-import {
-  MdOutlineDataset,
-  MdOutlineDriveFileRenameOutline,
-  MdOutlineProductionQuantityLimits,
-} from "react-icons/md"
-import { HiTemplate } from "react-icons/hi"
-import { TbReport } from "react-icons/tb"
-import { AiOutlineUsergroupAdd } from "react-icons/ai"
+import { BsChevronDown, BsGraphUp } from "react-icons/bs"
 import { GiHamburgerMenu } from "react-icons/gi"
 import Link from "next/link"
+import { RxComponent1 } from "react-icons/rx"
+import { FiLogIn, FiMenu } from "react-icons/fi"
 
 type Props = {
   children: ReactNode
@@ -56,62 +49,81 @@ export const SideBar = ({ children }: Props) => {
       icon: <BsGraphUp />,
     },
     {
-      name: "Master Data",
+      name: "Login Page",
+      path: "/loginpage",
+      child: [],
+      icon: <FiLogIn />,
+    },
+    {
+      name: "Component",
       path: "/",
       child: [
         {
-          name: "Barang",
+          name: "Form Input",
           path: "/",
-          icon: <MdOutlineDriveFileRenameOutline />,
+          icon: <RxComponent1 />,
         },
         {
-          name: "Stok Barang",
+          name: "Table",
           path: "/",
-          icon: <MdOutlineProductionQuantityLimits />,
+          icon: <RxComponent1 />,
+        },
+        {
+          name: "Button",
+          path: "/",
+          icon: <RxComponent1 />,
+        },
+        {
+          name: "Toast",
+          path: "/",
+          icon: <RxComponent1 />,
+        },
+        {
+          name: "Loading",
+          path: "/",
+          icon: <RxComponent1 />,
         },
       ],
-      icon: <MdOutlineDataset />,
+      icon: <RxComponent1 />,
     },
     {
-      name: "Barang Masuk",
-      path: "/barangmasuk",
-      child: [],
-      icon: <HiTemplate />,
-    },
-    {
-      name: "Barang Keluar",
-      path: "/",
-      child: [],
-      icon: <HiTemplate />,
-    },
-    {
-      name: "Report Penjualan",
-      path: "/",
-      child: [],
-      icon: <TbReport />,
-    },
-    {
-      name: "Daftar User",
-      path: "/",
-      child: [],
-      icon: <AiOutlineUsergroupAdd />,
-    },
-    {
-      name: "Master Data",
+      name: "example Child Menu",
       path: "/",
       child: [
         {
-          name: "Barang",
+          name: "Example 1",
           path: "/",
-          icon: <MdOutlineDriveFileRenameOutline />,
+          icon: <FiMenu />,
         },
         {
-          name: "Stok Barang",
+          name: "Example 2",
           path: "/",
-          icon: <MdOutlineProductionQuantityLimits />,
+          icon: <FiMenu />,
+        },
+        {
+          name: "Example 3",
+          path: "/",
+          icon: <FiMenu />,
         },
       ],
-      icon: <MdOutlineDataset />,
+      icon: <FiMenu />,
+    },
+    {
+      name: "Order",
+      path: "/",
+      child: [
+        {
+          name: "Create Order",
+          path: "/",
+          icon: <FiMenu />,
+        },
+        {
+          name: "List Order",
+          path: "/",
+          icon: <FiMenu />,
+        },
+      ],
+      icon: <FiMenu />,
     },
   ]
   const tempArrIsDown = (index: any) => {
@@ -141,10 +153,8 @@ export const SideBar = ({ children }: Props) => {
     <div className="flex">
       <div
         className={` ${
-          isSideOpen
-            ? "w-72 min-w-[18rem] duration-500"
-            : "w-0 min-w-[0rem] duration-500"
-        } h-screen bg-[#27374D] z-20 shadow-2xl top-0 left-0 xl:sticky lg:fixed fixed`}
+          isSideOpen ? "w-72 min-w-[18rem] " : "w-0 min-w-[0rem] "
+        } h-screen bg-[#27374D] z-20 shadow-2xl top-0 left-0 xl:sticky lg:fixed fixed duration-300`}
       >
         <button
           className={`bg-[#27374D] p-2 rounded-md absolute -right-10 top-2 `}
@@ -153,8 +163,7 @@ export const SideBar = ({ children }: Props) => {
           <GiHamburgerMenu />
         </button>
         <nav
-          // hidden={isSideOpen ? false : true}
-          className={`transition-opacity ${
+          className={`transition-opacity overflow-auto max-h-screen ${
             isSideOpen
               ? "block opacity-100 duration-1000"
               : "block opacity-0 duration-100"
