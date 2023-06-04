@@ -1,5 +1,11 @@
 "use client"
-import React, { PureComponent, useEffect, useRef, useState } from "react"
+import React, {
+  PureComponent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { CardDashboard, Layout, Section } from "@/components"
 import { BsGraphUp, BsArrowDown } from "react-icons/bs"
 import {
@@ -13,6 +19,10 @@ import {
   ResponsiveContainer,
 } from "recharts"
 import { CiMenuKebab } from "react-icons/ci"
+import { MRT_ColumnDef, MaterialReactTable } from "material-react-table"
+import { IOrder, ISales } from "@/interface"
+import { ThemeProvider } from "@emotion/react"
+import { createTheme } from "@mui/material"
 
 export default function Home() {
   const data = [
@@ -60,11 +70,152 @@ export default function Home() {
     },
   ]
 
+  const dataTableSales: ISales[] = [
+    {
+      id: 1,
+      transaction_date: "06-04-2023",
+      name: "Carrot",
+      quantity: 33,
+      price: 532000,
+    },
+    {
+      id: 2,
+      transaction_date: "07-04-2023",
+      name: "Arrowroot",
+      quantity: 38,
+      price: 1000000,
+    },
+    {
+      id: 3,
+      transaction_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+    {
+      id: 4,
+      transaction_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+    {
+      id: 5,
+      transaction_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+    {
+      id: 6,
+      transaction_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+  ]
+
+  const dataTableOrder: IOrder[] = [
+    {
+      order_date: "06-04-2023",
+      name: "Carrot",
+      quantity: 33,
+      price: 532000,
+    },
+    {
+      order_date: "07-04-2023",
+      name: "Arrowroot",
+      quantity: 38,
+      price: 1000000,
+    },
+    {
+      order_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+    {
+      order_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+    {
+      order_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+    {
+      order_date: "03-04-2023",
+      name: "Carrot",
+      quantity: 20,
+      price: 372000,
+    },
+  ]
+
+  const columns = useMemo<MRT_ColumnDef<ISales>[]>(
+    () => [
+      {
+        accessorKey: "id", //access nested data with dot notation
+        header: "ID",
+        size: 150,
+      },
+      {
+        accessorKey: "transaction_date",
+        header: "Transaction Date",
+        size: 150,
+      },
+      {
+        accessorKey: "name", //normal accessorKey
+        header: "Name",
+        size: 200,
+      },
+      {
+        accessorKey: "quantity",
+        header: "qty",
+        size: 50,
+      },
+      {
+        accessorKey: "price",
+        header: "Price",
+        size: 150,
+      },
+    ],
+    []
+  )
+
+  const columnsOrder = useMemo<MRT_ColumnDef<IOrder>[]>(
+    () => [
+      {
+        accessorKey: "order_date",
+        header: "Transaction Date",
+        size: 150,
+      },
+      {
+        accessorKey: "name", //normal accessorKey
+        header: "Name",
+        size: 200,
+      },
+      {
+        accessorKey: "quantity",
+        header: "qty",
+        size: 50,
+      },
+      {
+        accessorKey: "price",
+        header: "Price",
+        size: 150,
+      },
+    ],
+    []
+  )
+
   return (
     <div className="flex flex-col overflow-auto h-screen max-w-screen max-h-screen">
       <Layout>
-        <div className="flex flex-col flex-grow">
-          <div className="flex flex-row font-bold text-xl text-[#27374D] mt-20 ml-10 items-center space-x-3">
+        <div className="flex flex-col flex-grow py-5">
+          <div className="flex flex-row font-bold text-xl text-[#27374D] mt-16 ml-10 items-center space-x-3">
             <BsGraphUp />
             <span>/</span>
             <span>Dashboard</span>
@@ -72,37 +223,62 @@ export default function Home() {
           {/* start section card` */}
           <CardDashboard />
           {/* end section card */}
-          <Section marginTop="5">
-            <div className="xl:flex xl:flex-col lg:flex lg:flex-col md:grid md:grid-cols-1 sm:flex sm:flex-col flex flex-col h-full xl:justify-center lg:justify-center justify-start xl:items-center lg:items-center items-start flex-grow min-w-fit">
-              <span className="text-[#27374D] font-bold text-lg self-start">
-                Sales Chart
-              </span>
-              <ResponsiveContainer width="95%" height={500}>
-                <LineChart
-                  data={data}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="pv"
-                    stroke="#8884d8"
-                    activeDot={{ r: 8 }}
-                  />
-                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </Section>
+          {/* start chart */}
+          <div className="flex w-full px-10">
+            <Section marginTop="5">
+              <div className="xl:flex xl:flex-col lg:flex lg:flex-col md:grid md:grid-cols-1 sm:flex sm:flex-col flex flex-col h-full xl:justify-center lg:justify-center justify-start xl:items-center lg:items-center items-start flex-grow min-w-fit">
+                <span className="text-[#27374D] font-bold text-lg self-start mb-4">
+                  Sales Chart
+                </span>
+                <ResponsiveContainer width="95%" height={500}>
+                  <LineChart
+                    data={data}
+                    margin={{
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="pv"
+                      stroke="#8884d8"
+                      activeDot={{ r: 8 }}
+                    />
+                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </Section>
+          </div>
+          {/* end chart */}
+          <div className="flex px-10 xl:flex-row lg:flex-col flex-col flex-grow w-full mt-5 items-center justify-center gap-3">
+            <Section marginTop={"0"}>
+              <div className="flex flex-col w-full space-y-5">
+                <span className="text-[#27374D] font-bold text-lg self-start">
+                  Report Sales
+                </span>
+                <MaterialReactTable columns={columns} data={dataTableSales} />
+              </div>
+            </Section>
+            <Section marginTop={"0"}>
+              <div className="flex flex-col w-full space-y-5">
+                <span className="text-[#27374D] font-bold text-lg self-start">
+                  Report Order
+                </span>
+                <MaterialReactTable
+                  columns={columnsOrder}
+                  data={dataTableOrder}
+                />
+              </div>
+            </Section>
+          </div>
         </div>
       </Layout>
     </div>
