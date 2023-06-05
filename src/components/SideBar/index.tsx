@@ -60,8 +60,8 @@ export const SideBar = ({ children }: Props) => {
       path: "/",
       child: [
         {
-          name: "Form Input",
-          path: "/forminput",
+          name: "Input Label",
+          path: "/inputlabel",
           icon: <RxComponent1 />,
         },
         {
