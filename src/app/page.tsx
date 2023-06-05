@@ -232,6 +232,7 @@ export default function Home() {
                 </span>
                 <ResponsiveContainer width="95%" height={500}>
                   <LineChart
+                    key="chart"
                     data={data}
                     margin={{
                       top: 5,
@@ -264,7 +265,11 @@ export default function Home() {
                 <span className="text-[#27374D] font-bold text-lg self-start">
                   Report Sales
                 </span>
-                <MaterialReactTable columns={columns} data={dataTableSales} />
+                <MaterialReactTable
+                  key="table sales"
+                  columns={columns}
+                  data={dataTableSales}
+                />
               </div>
             </Section>
             <Section marginTop={"0"}>
@@ -273,6 +278,7 @@ export default function Home() {
                   Report Order
                 </span>
                 <MaterialReactTable
+                  key="table order"
                   columns={columnsOrder}
                   data={dataTableOrder}
                 />
