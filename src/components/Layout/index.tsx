@@ -12,7 +12,9 @@ export const Layout = ({ children }: Props) => {
       <div className="top-0 right-0 fixed xl:opacity-100 lg:opacity-0 opacity-0 duration-300 z-10 bg-[#9DB2BF] w-full">
         <Navbar />
       </div>
-      {children}
+      <div className="flex flex-col overflow-auto h-screen max-w-screen max-h-screen">
+        {children}
+      </div>
     </SideBar>
   )
 }

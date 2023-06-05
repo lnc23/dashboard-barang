@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import Link from "next/link"
 import { RxComponent1 } from "react-icons/rx"
 import { FiLogIn, FiMenu } from "react-icons/fi"
+import { useRouter } from "next/navigation"
 
 type Props = {
   children: ReactNode
@@ -14,11 +15,11 @@ export const SideBar = ({ children }: Props) => {
   const [isSideOpen, setIsSideOpen] = useState<boolean>(true)
   const [isDown, setIsDown] = useState<any>([])
   const [isShowUser, setIsShowUser] = useState<boolean>(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth
-      const screenHeight = window.innerHeight
 
       if (screenWidth <= 1279) {
         setIsSideOpen(false)
@@ -60,7 +61,7 @@ export const SideBar = ({ children }: Props) => {
       child: [
         {
           name: "Form Input",
-          path: "/",
+          path: "/forminput",
           icon: <RxComponent1 />,
         },
         {
@@ -138,6 +139,10 @@ export const SideBar = ({ children }: Props) => {
     }
   }
 
+  const childNextPage = (path: any) => {
+    router.push(`${path}`)
+  }
+
   const handleChevronIcon = (index: any) => {
     return (
       <BsChevronDown
@@ -212,7 +217,7 @@ export const SideBar = ({ children }: Props) => {
                           <li className="relative hover:bg-[#526D82] hover:duration-500 hover:py-3 py-3 hover:w-full hover:rounded-sm">
                             <button
                               className="ml-14 text-white flex flex-row items-center gap-5"
-                              onClick={() => console.log(child.path)}
+                              onClick={() => childNextPage(child.path)}
                             >
                               {child.icon}
                               <text className="font-medium text-lg">
