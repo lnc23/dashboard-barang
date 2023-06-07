@@ -212,79 +212,75 @@ export default function Home() {
   )
 
   return (
-      <Layout>
-        <div className="flex flex-col flex-grow py-5">
-          <div className="flex flex-row font-bold text-xl text-[#27374D] mt-16 ml-10 items-center space-x-3">
-            <BsGraphUp />
-            <span>/</span>
-            <span>Dashboard</span>
+    <Layout>
+      <div className="flex flex-col flex-grow py-5">
+        <div className="flex flex-row font-bold text-xl text-[#27374D] mt-16 ml-10 items-center space-x-3">
+          <BsGraphUp />
+          <span>/</span>
+          <span>Dashboard</span>
+        </div>
+        {/* start section card` */}
+        <CardDashboard />
+        {/* end section card */}
+        {/* start chart */}
+        <div className="flex w-full px-10">
+          <Section marginTop="5">
+            <div className="xl:flex xl:flex-col lg:flex lg:flex-col md:grid md:grid-cols-1 sm:flex sm:flex-col flex flex-col h-full xl:justify-center lg:justify-center justify-start xl:items-center lg:items-center items-start flex-grow min-w-fit">
+              <span className="text-[#27374D] font-bold text-lg self-start mb-4">
+                Sales Chart
+              </span>
+              <ResponsiveContainer width="95%" height={500}>
+                <LineChart
+                  key="chart"
+                  data={data}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="pv"
+                    stroke="#8884d8"
+                    activeDot={{ r: 8 }}
+                  />
+                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </Section>
+        </div>
+        {/* end chart */}
+        <div className="grid px-10 xl:grid-cols-2 lg:grid-cols-1 grid-cols-1 flex-grow w-full mt-5 items-center justify-center gap-3">
+          <div className="flex bg-white rounded-lg p-2 flex-col w-full space-y-5">
+            <span className="text-[#27374D] font-bold text-lg self-start">
+              Report Sales
+            </span>
+            <MaterialReactTable
+              key="table sales"
+              columns={columns}
+              data={dataTableSales}
+            />
           </div>
-          {/* start section card` */}
-          <CardDashboard />
-          {/* end section card */}
-          {/* start chart */}
-          <div className="flex w-full px-10">
-            <Section marginTop="5">
-              <div className="xl:flex xl:flex-col lg:flex lg:flex-col md:grid md:grid-cols-1 sm:flex sm:flex-col flex flex-col h-full xl:justify-center lg:justify-center justify-start xl:items-center lg:items-center items-start flex-grow min-w-fit">
-                <span className="text-[#27374D] font-bold text-lg self-start mb-4">
-                  Sales Chart
-                </span>
-                <ResponsiveContainer width="95%" height={500}>
-                  <LineChart
-                    key="chart"
-                    data={data}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="pv"
-                      stroke="#8884d8"
-                      activeDot={{ r: 8 }}
-                    />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </Section>
-          </div>
-          {/* end chart */}
-          <div className="flex px-10 xl:flex-row lg:flex-col flex-col flex-grow w-full mt-5 items-center justify-center gap-3">
-            <Section marginTop={"0"}>
-              <div className="flex flex-col w-full space-y-5">
-                <span className="text-[#27374D] font-bold text-lg self-start">
-                  Report Sales
-                </span>
-                <MaterialReactTable
-                  key="table sales"
-                  columns={columns}
-                  data={dataTableSales}
-                />
-              </div>
-            </Section>
-            <Section marginTop={"0"}>
-              <div className="flex flex-col w-full space-y-5">
-                <span className="text-[#27374D] font-bold text-lg self-start">
-                  Report Order
-                </span>
-                <MaterialReactTable
-                  key="table order"
-                  columns={columnsOrder}
-                  data={dataTableOrder}
-                />
-              </div>
-            </Section>
+          <div className="flex bg-white rounded-lg p-2 flex-col w-full space-y-5">
+            <span className="text-[#27374D] font-bold text-lg self-start">
+              Report Order
+            </span>
+            <MaterialReactTable
+              key="table order"
+              columns={columnsOrder}
+              data={dataTableOrder}
+            />
           </div>
         </div>
-      </Layout>
+      </div>
+    </Layout>
   )
 }

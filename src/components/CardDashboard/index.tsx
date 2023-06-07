@@ -129,23 +129,18 @@ export const CardDashboard = () => {
   ]
 
   return (
-    <div className="xl:flex xl:flex-row lg:grid lg:grid-cols-2 md:grid md:grid-cols-1 sm:grid sm:grid-cols-1 grid grid-cols-1 justify-center xl:flex-grow mt-5 px-10 gap-10">
+    <div className="xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 grid grid-cols-1 justify-center xl:flex-grow mt-5 px-10 gap-5">
       {/* start card 1 */}
-      <div className="flex-col flex bg-blue-900 w-full h-fit shadow-2xl rounded-lg p-5 relative min-w-fit">
-        <div className="absolute right-3">
-          <button className="p-2 rounded-full hover:bg-blue-950 hover:opacity-100 hover:duration-500">
-            <CiMenuKebab size={30} />
-          </button>
-        </div>
-        <span className="font-bold space-x-3 flex flex-row text-2xl text-[#DDE6ED]">
+      <div className="flex-col flex bg-blue-900  sm:overflow-auto overflow-auto w-full h-fit shadow-2xl rounded-lg pt-5 px-5 relative">
+        <span className="font-bold space-x-3 flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col text-lg text-[#DDE6ED]">
           Rp 600.000k
-          <span className="text-lg ml-3 flex flex-row items-center text-[#DDE6ED]">
+          <span className="text-sm xl:ml-3 lg:ml-3 md:ml-3 sm:ml-3 ml-0 flex flex-row items-center text-[#DDE6ED]">
             (-13.3% <BsArrowDown /> )
           </span>
         </span>
-        <span className="text-lg text-[#DDE6ED]">Total Sales</span>
+        <span className="text-sm text-[#DDE6ED]">Total Sales</span>
         <div className="flex items-center mt-5  justify-center">
-          <ResponsiveContainer width={300} height={150}>
+          <ResponsiveContainer width="100%" height={150}>
             <LineChart width={300} height={100} data={dataSales}>
               <Line
                 type="monotone"
@@ -159,21 +154,16 @@ export const CardDashboard = () => {
       </div>
       {/* end card 1 */}
       {/* start card 2 */}
-      <div className="flex-col flex bg-green-900 w-full h-fit shadow-2xl rounded-lg p-5 relative min-w-fit">
-        <div className="absolute right-3">
-          <button className="p-2 rounded-full hover:bg-green-950 hover:opacity-100 hover:duration-500">
-            <CiMenuKebab size={30} />
-          </button>
-        </div>
-        <span className="font-bold space-x-3 flex flex-row text-2xl text-[#DDE6ED]">
+      <div className="flex-col flex bg-green-900 sm:overflow-auto overflow-auto w-full h-fit shadow-2xl rounded-lg pt-5 px-5 relative">
+        <span className="font-bold space-x-3 flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col text-lg text-[#DDE6ED]">
           Rp 600.000k
-          <span className="text-lg ml-3 flex flex-row items-center text-[#DDE6ED]">
+          <span className="text-sm xl:ml-3 lg:ml-3 md:ml-3 sm:ml-3 ml-0 flex flex-row items-center text-[#DDE6ED]">
             (-13.3% <BsArrowDown /> )
           </span>
         </span>
-        <span className="text-lg text-[#DDE6ED]">Total Order</span>
+        <span className="text-sm text-[#DDE6ED]">Total Order</span>
         <div className="flex items-center mt-5  justify-center">
-          <ResponsiveContainer width={300} height={150}>
+          <ResponsiveContainer width="100%" height={150}>
             <LineChart width={300} height={100} data={dataOrder}>
               <Line
                 type="monotone"
@@ -187,21 +177,16 @@ export const CardDashboard = () => {
       </div>
       {/* end card 2 */}
       {/* start card 3 */}
-      <div className="flex-col flex bg-red-900 h-fit w-full shadow-2xl rounded-lg p-5 relative min-w-fit">
-        <div className="absolute right-3">
-          <button className="p-2 rounded-full hover:bg-red-950 hover:opacity-100 hover:duration-500">
-            <CiMenuKebab size={30} />
-          </button>
-        </div>
-        <span className="font-bold space-x-3 flex flex-row text-2xl text-[#DDE6ED]">
+      <div className="flex-col flex bg-red-900 sm:overflow-auto overflow-auto h-fit w-full shadow-2xl rounded-lg pt-5 px-5 relative">
+        <span className="font-bold space-x-3 flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col text-lg text-[#DDE6ED]">
           Rp 712.300k
-          <span className="text-lg ml-3 flex flex-row items-center text-[#DDE6ED]">
+          <span className="text-sm xl:ml-3 lg:ml-3 md:ml-3 sm:ml-3 ml-0 flex flex-row items-center text-[#DDE6ED]">
             (10.5% <BsArrowDown className="rotate-180" /> )
           </span>
         </span>
-        <span className="text-lg text-[#DDE6ED]">Total Expense</span>
+        <span className="text-sm text-[#DDE6ED]">Total Expense</span>
         <div className="flex items-center mt-5   justify-center">
-          <ResponsiveContainer width={300} height={150}>
+          <ResponsiveContainer width="100%" height={150}>
             <LineChart width={300} height={100} data={dataExpense}>
               <Line
                 type="monotone"
@@ -215,21 +200,16 @@ export const CardDashboard = () => {
       </div>
       {/* end card 3 */}
       {/* start card 3 */}
-      <div className="flex-col flex bg-yellow-900 h-fit w-full shadow-2xl rounded-lg p-5 relative min-w-fit">
-        <div className="absolute right-3">
-          <button className="p-2 rounded-full hover:bg-yellow-950 hover:opacity-100 hover:duration-500">
-            <CiMenuKebab size={30} />
-          </button>
-        </div>
-        <span className="font-bold space-x-3 flex flex-row text-2xl text-[#DDE6ED]">
+      <div className="flex-col flex bg-yellow-900 sm:overflow-auto overflow-auto h-fit w-full shadow-2xl rounded-lg pt-5 px-5 relative">
+        <span className="font-bold space-x-3 flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col text-lg text-[#DDE6ED]">
           Rp 712.300k
-          <span className="text-lg ml-3 flex flex-row items-center text-[#DDE6ED]">
+          <span className="text-sm xl:ml-3 lg:ml-3 md:ml-3 sm:ml-3 ml-0 flex flex-row items-center text-[#DDE6ED]">
             (10.5% <BsArrowDown className="rotate-180" /> )
           </span>
         </span>
-        <span className="text-lg text-[#DDE6ED]">Total Loss</span>
+        <span className="text-sm text-[#DDE6ED]">Total Loss</span>
         <div className="flex items-center mt-5   justify-center">
-          <ResponsiveContainer width={300} height={150}>
+          <ResponsiveContainer width="100%" height={150}>
             <LineChart width={300} height={100} data={dataLoss}>
               <Line
                 type="monotone"
