@@ -2,13 +2,21 @@
 import { Layout, Section } from "@/components"
 import { useState } from "react"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { RxComponent1 } from "react-icons/rx"
 
 export default function InputLabelPage() {
   const [isEye, setIsEye] = useState<boolean>(false)
 
   return (
     <Layout>
-      <div className="px-10 py-10 flex-grow">
+      <div className="flex flex-row font-bold text-lg text-[#27374D] mt-16 ml-10 items-center space-x-2">
+        <RxComponent1 />
+        <span>/</span>
+        <span>Component</span>
+        <span>/</span>
+        <span>Input Label</span>
+      </div>
+      <div className="px-10 py-1 flex-grow">
         <Section marginTop={"5"}>
           <div className="flex flex-col w-full px-10 space-y-2">
             {/* basic imnput label */}
@@ -73,7 +81,7 @@ export default function InputLabelPage() {
                   className="flex w-full border-[2px] border-[#cdcdcd] duration-300 px-3 py-1 rounded-l-lg hover:border-[#526D82] hover:border-2 focus:outline-none focus:border-[#526D82] text-black"
                   placeholder="example"
                 ></input>
-                <button className="rounded-r-lg p-1 px-10 bg-[#27374D] text-white">
+                <button className="rounded-r-lg p-1 px-10 bg-[#27374D] hover:shadow-lg hover:shadow-gray-500 duration-300 text-white">
                   Submit
                 </button>
               </div>

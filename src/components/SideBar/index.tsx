@@ -66,7 +66,7 @@ export const SideBar = ({ children }: Props) => {
         },
         {
           name: "Table",
-          path: "/",
+          path: "/tablepage",
           icon: <RxComponent1 />,
         },
         {
@@ -154,7 +154,6 @@ export const SideBar = ({ children }: Props) => {
   }
 
   return (
-    // test commit
     <div className="flex">
       <div
         className={` ${
