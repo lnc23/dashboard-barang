@@ -214,7 +214,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="flex flex-col flex-grow py-5">
-        <div className="flex flex-row font-bold text-xl text-[#27374D] mt-16 ml-10 items-center space-x-3">
+        <div className="flex flex-row font-bold text-lg text-[#27374D] mt-16 ml-10 items-center space-x-2">
           <BsGraphUp />
           <span>/</span>
           <span>Dashboard</span>
