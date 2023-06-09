@@ -18,7 +18,7 @@ export default function InputLabelPage() {
       </div>
       <div className="px-10 py-1 flex-grow">
         <Section marginTop={"5"}>
-          <div className="flex flex-col w-full px-10 space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             {/* basic imnput label */}
             <div className="flex flex-col w-full">
               <span className="text-xl text-black font-bold">
