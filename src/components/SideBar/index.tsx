@@ -71,7 +71,7 @@ export const SideBar = ({ children }: Props) => {
         },
         {
           name: "Button",
-          path: "/",
+          path: "/buttonpage",
           icon: <RxComponent1 />,
         },
         {
