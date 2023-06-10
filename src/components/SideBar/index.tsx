@@ -76,7 +76,7 @@ export const SideBar = ({ children }: Props) => {
         },
         {
           name: "Toast",
-          path: "/",
+          path: "/toastpage",
           icon: <RxComponent1 />,
         },
         {
