@@ -6,6 +6,7 @@ import Link from "next/link"
 import { RxComponent1 } from "react-icons/rx"
 import { FiLogIn, FiMenu } from "react-icons/fi"
 import { useRouter } from "next/navigation"
+import { useStoreActions, useStoreState } from "easy-peasy"
 
 type Props = {
   children: ReactNode
@@ -13,9 +14,16 @@ type Props = {
 
 export const SideBar = ({ children }: Props) => {
   const [isSideOpen, setIsSideOpen] = useState<boolean>(true)
-  const [isDown, setIsDown] = useState<any>([])
   const [isShowUser, setIsShowUser] = useState<boolean>(false)
   const router = useRouter()
+  //@ts-ignore
+  const isDown = useStoreState((state) => state.isDown)
+  //@ts-ignore
+  const tempArrIsDown = useStoreActions((actions) => actions.tempArrIsDown)
+  //@ts-ignore
+  const sidebarClick = useStoreActions((actions) => actions.sidebarClick)
+  //@ts-ignore
+  const isSidebarClick = useStoreState((state) => state.isSidebarClick)
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,13 +87,25 @@ export const SideBar = ({ children }: Props) => {
           path: "/toastpage",
           icon: <RxComponent1 />,
         },
-        {
-          name: "Loading",
-          path: "/",
-          icon: <RxComponent1 />,
-        },
       ],
       icon: <RxComponent1 />,
+    },
+    {
+      name: "Order",
+      path: "/",
+      child: [
+        {
+          name: "Create Order",
+          path: "/",
+          icon: <FiMenu />,
+        },
+        {
+          name: "List Order",
+          path: "/",
+          icon: <FiMenu />,
+        },
+      ],
+      icon: <FiMenu />,
     },
     {
       name: "example Child Menu",
@@ -109,29 +129,7 @@ export const SideBar = ({ children }: Props) => {
       ],
       icon: <FiMenu />,
     },
-    {
-      name: "Order",
-      path: "/",
-      child: [
-        {
-          name: "Create Order",
-          path: "/",
-          icon: <FiMenu />,
-        },
-        {
-          name: "List Order",
-          path: "/",
-          icon: <FiMenu />,
-        },
-      ],
-      icon: <FiMenu />,
-    },
   ]
-  const tempArrIsDown = (index: any) => {
-    const tempArr = [...isDown]
-    tempArr[index] = !isDown[index] ?? true
-    setIsDown(tempArr)
-  }
 
   const handleSideBar = (index: any) => {
     if (menu[index].child.length > 0) {
@@ -141,6 +139,7 @@ export const SideBar = ({ children }: Props) => {
 
   const childNextPage = (path: any) => {
     router.push(`${path}`)
+    sidebarClick(path)
   }
 
   const handleChevronIcon = (index: any) => {
@@ -183,7 +182,11 @@ export const SideBar = ({ children }: Props) => {
 
           {menu.map((menu, index) => (
             <ul key={index}>
-              <li className="relative hover:bg-[#526D82] hover:duration-500 hover:w-full hover:py-5 py-5 hover:rounded-sm">
+              <li
+                className={`relative hover:bg-[#526D82] ${
+                  isDown[index] ? "bg-[#526D82]" : ""
+                } hover:duration-500 hover:w-full hover:py-5 py-5 hover:rounded-sm`}
+              >
                 {menu.child.length > 0 ? (
                   <button
                     className="ml-5 text-white flex flex-row items-center gap-5"
@@ -213,7 +216,13 @@ export const SideBar = ({ children }: Props) => {
                     isDown[index] ? (
                       <ul key={indexchild}>
                         {
-                          <li className="relative hover:bg-[#526D82] hover:duration-500 hover:py-3 py-3 hover:w-full hover:rounded-sm">
+                          <li
+                            className={`relative hover:bg-[#526D82] hover:duration-500 hover:py-3 py-3 hover:w-full hover:rounded-sm ${
+                              isSidebarClick === child.path
+                                ? "bg-[#526D82]"
+                                : ""
+                            }`}
+                          >
                             <button
                               className="ml-14 text-white flex flex-row items-center gap-5"
                               onClick={() => childNextPage(child.path)}
