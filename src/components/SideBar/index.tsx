@@ -7,7 +7,6 @@ import { RxComponent1 } from "react-icons/rx"
 import { FiLogIn, FiMenu } from "react-icons/fi"
 import { useRouter } from "next/navigation"
 import { useStoreActions, useStoreState } from "easy-peasy"
-
 type Props = {
   children: ReactNode
 }
@@ -96,12 +95,12 @@ export const SideBar = ({ children }: Props) => {
       child: [
         {
           name: "Create Order",
-          path: "/",
+          path: "/createorderpage",
           icon: <FiMenu />,
         },
         {
           name: "List Order",
-          path: "/",
+          path: "/listorderpage",
           icon: <FiMenu />,
         },
       ],
